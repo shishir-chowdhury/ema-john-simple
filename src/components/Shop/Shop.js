@@ -43,20 +43,32 @@ const Shop = () => {
         addToDb(product.key);
     }
 
-
+    const handleSearch = event => {
+        const searchText = event.target.value;
+        const matchedProduct = products.filter(product => product.name.toLowerCase().includes(searchText.toLowerCase()));
+        console.log(matchedProduct.length);
+    }
     return (
-        <div className='shop-container'>
-            <div className="product-container">
-                {
-                    products.map(product => <Product
-                        key={product.key}
-                        product={product}
-                        handleAddToCart={handleAddToCart}
-                    ></Product>)
-                }
+        <div>
+            <div className="search-container">
+                <input
+                    type="text"
+                    onChange={handleSearch}
+                    placeholder='Search Product' />
             </div>
-            <div className="cart-container">
-                <Cart cart={cart}></Cart>
+            <div className='shop-container'>
+                <div className="product-container">
+                    {
+                        products.map(product => <Product
+                            key={product.key}
+                            product={product}
+                            handleAddToCart={handleAddToCart}
+                        ></Product>)
+                    }
+                </div>
+                <div className="cart-container">
+                    <Cart cart={cart}></Cart>
+                </div>
             </div>
         </div>
     );

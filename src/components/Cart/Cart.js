@@ -2,7 +2,7 @@ import React from 'react';
 
 const cart = (props) => {
     const { cart } = props;
-    console.log(cart);
+
 
 
     let totalQuantity = 0;
